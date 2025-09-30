@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Card() {
+export function Flashcard({term, definition}) {
     const [flipped, setFlipped] = React.useState(false);
 
     function flipCard() {
@@ -8,8 +8,8 @@ export function Card() {
     }
 
     if (flipped) {
-        return (<div onClick={flipCard}>This is the back of the card</div>)
+        return (<div onClick={flipCard}>{definition}</div>)
     }
 
-    return (<div onClick={flipCard}>This is a card</div>);
+    return (<div onClick={flipCard}>{term}</div>);
 }

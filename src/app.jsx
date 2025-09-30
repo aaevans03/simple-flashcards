@@ -1,11 +1,14 @@
 import React from "react";
-import { Card } from "./card/flashcard";
+import { Flashcard } from "./flashcard/flashcard.jsx";
 
 export default function App() {
     return (
         <div>
             <h1>Simple Flashcards</h1>
-            <Card />
+            <Flashcard
+                term="Term"
+                definition="Definition"
+            />
         </div>
     );
 }

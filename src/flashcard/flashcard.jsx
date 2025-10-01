@@ -1,4 +1,5 @@
 import React from "react";
+import '../app.css';
 
 export function Flashcard({term, definition}) {
     const [flipped, setFlipped] = React.useState(false);
@@ -7,9 +8,5 @@ export function Flashcard({term, definition}) {
         setFlipped(!flipped)
     }
 
-    if (flipped) {
-        return (<div onClick={flipCard}>{definition}</div>)
-    }
-
-    return (<div onClick={flipCard}>{term}</div>);
+    return (<div className="card" onClick={flipCard}>{flipped ? definition : term}</div>);
 }

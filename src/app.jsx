@@ -3,12 +3,14 @@ import { Flashcard } from "./flashcard/flashcard.jsx";
 
 export default function App() {
     return (
-        <div>
+        <body>
             <h1>Simple Flashcards</h1>
-            <Flashcard
-                term="Term"
-                definition="Definition"
-            />
-        </div>
+            <div className="card-container">
+                <Flashcard
+                    term="Term"
+                    definition="Definition"
+                    />
+            </div>
+        </body>
     );
 }

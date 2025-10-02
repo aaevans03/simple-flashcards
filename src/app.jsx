@@ -3,7 +3,7 @@ import { Flashcard } from "./flashcard/flashcard.jsx";
 
 export default function App() {
     return (
-        <body>
+        <div className="app">
             <h1>Simple Flashcards</h1>
             <div className="card-container">
                 <Flashcard
@@ -11,6 +11,6 @@ export default function App() {
                     definition="Definition"
                     />
             </div>
-        </body>
+        </div>
     );
 }

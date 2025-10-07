@@ -11,10 +11,12 @@ export default function FlashcardViewer({ flashcards }) {
             // left arrow: go to previous card
             if (event.key === "ArrowLeft") {
                 setCurrentIndex(prev => Math.max(0, prev - 1));
+                setFlipped(false);
             }
             // right arrow: go to next card
             if (event.key === "ArrowRight") {
                 setCurrentIndex(prev => Math.min(flashcards.length - 1, prev + 1));
+                setFlipped(false);
             }
             // up/down arrow: flip card
             if (event.key === "ArrowUp" || event.key === "ArrowDown") {

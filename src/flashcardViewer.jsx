@@ -3,6 +3,7 @@ import { Flashcard } from "./flashcard/flashcard.jsx";
 
 export default function FlashcardViewer({ flashcards }) {
     const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [flipped, setFlipped] = React.useState(false);
 
     React.useEffect(() => {
         // event listener for arrow left/right keys to change card
@@ -13,7 +14,11 @@ export default function FlashcardViewer({ flashcards }) {
             }
             // right arrow: go to next card
             if (event.key === "ArrowRight") {
-                setCurrentIndex(prev => Math.min(tempFlashcards.length - 1, prev + 1));
+                setCurrentIndex(prev => Math.min(flashcards.length - 1, prev + 1));
+            }
+            // up/down arrow: flip card
+            if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+                flipCard();
             }
         };
         window.addEventListener("keydown", onKeyDown);
@@ -22,17 +27,16 @@ export default function FlashcardViewer({ flashcards }) {
         return () => window.removeEventListener("keydown", onKeyDown);
     }, []);
 
-    const tempFlashcards = [
-        { term: "Term 1", definition: "Definition 1" },
-        { term: "Term 2", definition: "Definition 2" },
-        { term: "Term 3", definition: "Definition 3" },
-    ]
+    function flipCard() {
+        setFlipped(f => !f);
+    }
 
     return (
         <div className="card-container">
             <Flashcard
-                term={tempFlashcards.at(currentIndex).term}
-                definition={tempFlashcards.at(currentIndex).definition}
+                card={flashcards[currentIndex]}
+                flipCard={flipCard}
+                flipped={flipped}
                 />
         </div>
     );

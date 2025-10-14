@@ -22,7 +22,7 @@ export default function App() {
     if (reviewMode === false) {
         return (
             <div className="app">
-                <h2>Edit Flashcards</h2>
+                <h1>Edit Flashcards</h1>
                 <FlashcardCreator setFlashcards={setFlashcards} returnToViewer={toggleMode}/>
             </div>
         );

@@ -2,7 +2,18 @@ import React from 'react';
 
 export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
 
-    const [userInput, setUserInput] = React.useState("");
+    const [userInput, setUserInput] = React.useState(() => {
+        const savedFlashcards = JSON.parse(localStorage.getItem("flashcards"));
+        if (!savedFlashcards) return "";
+        let output = "";
+        for (const line of savedFlashcards) {
+            // TODO: fix blank lines being added
+            // console.log(line);
+            output += line.term + " - " + line.definition + "\n";
+        }
+        // console.log(output);
+        return output;
+    });
 
     // input field
     // parser code
@@ -15,16 +26,19 @@ export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
             const [term, definition] = line.split(" - ");
             return { term, definition };
         });
+        // TODO: remove blank lines, nulls/undefineds
         localStorage.setItem("flashcards", JSON.stringify(parsedFlashcards));
-        // console.log("set in storage");
         setFlashcards(parsedFlashcards);
-        // console.log("set in state");
         returnToViewer();
     }
 
     return (
         <div className="creator">
-            <textarea type="text" className="input" onChange={(input) => setUserInput(input.target.value)} />
+            <textarea
+                type="text"
+                className="input"
+                value={userInput}
+                onChange={(input) => setUserInput(input.target.value)} />
             <button onClick={saveFlashcards}>Submit</button>
         </div>
     );

@@ -40,6 +40,11 @@ export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
         return input.filter(card => card.term && card.definition);
     }
 
+    function clearFlashcards() {
+        setUserInput("");
+        localStorage.removeItem("flashcards");
+    }
+
     return (
         <div className="creator">
             <textarea
@@ -47,7 +52,10 @@ export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
                 className="input"
                 value={userInput}
                 onChange={(input) => setUserInput(input.target.value)} />
-            <button onClick={saveFlashcards}>Submit</button>
+            <div>
+                <button onClick={saveFlashcards}>Submit</button>
+                <button onClick={clearFlashcards}>Clear</button>
+            </div>
         </div>
     );
 }

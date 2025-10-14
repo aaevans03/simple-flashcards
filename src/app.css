@@ -24,10 +24,6 @@ h1 {
     margin-bottom: 30px;
 }
 
-h2 {
-    margin-bottom: 20px;
-}
-
 .creator {
     display: flex;
     flex-direction: column;
@@ -67,6 +63,11 @@ h2 {
     margin-bottom: 30px;
 }
 
+.flipped {
+    background-color: rgb(245, 245, 245);
+    font-style: italic;
+}
+
 .no-card {
-    background-color: rgb(230, 233, 237);
+    background-color: rgb(227, 233, 241);
 }

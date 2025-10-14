@@ -24,6 +24,10 @@ h1 {
     margin-bottom: 30px;
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
 .creator {
     display: flex;
     flex-direction: column;
@@ -62,4 +66,8 @@ h1 {
     justify-content: center;
 
     margin-bottom: 30px;
+}
+
+.no-card {
+    background-color: rgb(230, 233, 237);
 }

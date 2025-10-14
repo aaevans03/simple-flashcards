@@ -33,13 +33,21 @@ export default function FlashcardViewer({ flashcards }) {
         setFlipped(f => !f);
     }
 
-    return (
-        <div className="card-container">
-            <Flashcard
-                card={flashcards[currentIndex]}
-                flipCard={flipCard}
-                flipped={flipped}
-                />
-        </div>
-    );
+    if (flashcards === null || flashcards.length === 0) {
+        return (
+            <div className="card no-card">
+                <em>No flashcards loaded. Create some in the editor!</em>
+            </div>
+        )
+    } else {
+        return (
+            <div className="card-container">
+                <Flashcard
+                    card={flashcards[currentIndex]}
+                    flipCard={flipCard}
+                    flipped={flipped}
+                    />
+            </div>
+        );
+    }
 }

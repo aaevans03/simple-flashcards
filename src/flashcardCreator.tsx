@@ -1,21 +1,22 @@
 import React from 'react';
 import type { Flashcard } from './flashcard.tsx';
+interface Props {
+    setFlashcards: (flashcards: Flashcard[]) => void;
+    returnToViewer: () => void;
+}
 
-export default function FlashcardCreator({ setFlashcards, returnToViewer }: any) {
+export default function FlashcardCreator({ setFlashcards, returnToViewer }: Props) {
 
     const [userInput, setUserInput] = React.useState(() => {
         // load from local storage
         const flashcards = localStorage.getItem("flashcards");
         if (!flashcards) return "";
 
-        const savedFlashcards: Flashcard[] = JSON.parse(flashcards);
 
         // clean up any bad entries
         const cleanedFlashcards = removeBadEntries(savedFlashcards);
-
         // create a new output to be loaded into text area
         let output = "";
-        for (const line of cleanedFlashcards) {
             output += line.term + " - " + line.definition + "\n";
         }
         return output;
@@ -38,7 +39,6 @@ export default function FlashcardCreator({ setFlashcards, returnToViewer }: any)
         returnToViewer();
     }
 
-    // remove any flashcard entries with null or undefined terms
     function removeBadEntries(input: Flashcard[]) {
         return input.filter(card => card.term && card.definition);
     }

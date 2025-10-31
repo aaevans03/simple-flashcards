@@ -1,11 +1,16 @@
 import React from "react";
-import FlashcardViewer from "./flashcardViewer.jsx";
-import FlashcardCreator from "./flashcardCreator.jsx";
+import FlashcardViewer from "./flashcardViewer.tsx";
+import FlashcardCreator from "./flashcardCreator.tsx";
+import type { Flashcard } from "./flashcard.js";
 
 export default function App() {
     const [flashcards, setFlashcards] = React.useState(() => {
-        return localStorage.getItem("flashcards") ? JSON.parse(localStorage.getItem("flashcards")) : null;
+        let flashcards = localStorage.getItem("flashcards");
+        if (!flashcards) return [];
+        const parsedFlashcards: Flashcard[] = JSON.parse(flashcards);
+        return parsedFlashcards;
     });
+
     const [reviewMode, setReviewMode] = React.useState(true);
 
     function toggleMode() {

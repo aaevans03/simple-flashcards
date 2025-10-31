@@ -1,11 +1,14 @@
 import React from 'react';
+import type { Flashcard } from './flashcard.tsx';
 
-export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
+export default function FlashcardCreator({ setFlashcards, returnToViewer }: any) {
 
     const [userInput, setUserInput] = React.useState(() => {
         // load from local storage
-        const savedFlashcards = JSON.parse(localStorage.getItem("flashcards"));
-        if (!savedFlashcards) return "";
+        const flashcards = localStorage.getItem("flashcards");
+        if (!flashcards) return "";
+
+        const savedFlashcards: Flashcard[] = JSON.parse(flashcards);
 
         // clean up any bad entries
         const cleanedFlashcards = removeBadEntries(savedFlashcards);
@@ -36,7 +39,7 @@ export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
     }
 
     // remove any flashcard entries with null or undefined terms
-    function removeBadEntries(input) {
+    function removeBadEntries(input: Flashcard[]) {
         return input.filter(card => card.term && card.definition);
     }
 
@@ -48,7 +51,7 @@ export default function FlashcardCreator({ setFlashcards, returnToViewer }) {
     return (
         <div className="creator">
             <textarea
-                type="text"
+                // type="text"
                 className="input"
                 value={userInput}
                 onChange={(input) => setUserInput(input.target.value)} />
